@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BinderBuddy – Tester werden</title>
+<style>
+  :root {
+    --bg: #ffffff; --text: #1b1f27; --muted: #5b6372; --line: #e3e6ec;
+    --accent: #b8860b; --head: #12161f; --soft: #f5f6f8; --btn: #12161f; --btntext: #ffffff;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #12161f; --text: #e8eaee; --muted: #a2a9b6; --line: #2a303c;
+      --accent: #f2b632; --head: #ffffff; --soft: #1a1f2a; --btn: #f2b632; --btntext: #12161f;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text);
+    font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+  main { max-width: 640px; margin: 0 auto; padding: 32px 16px 64px; }
+  .top { display: flex; align-items: center; gap: 16px; margin-bottom: 8px; }
+  .top img { width: 64px; height: 64px; border-radius: 16px; }
+  h1 { color: var(--head); font-size: 1.8rem; line-height: 1.2; margin: 0; }
+  h2 { color: var(--head); font-size: 1.2rem; margin: 36px 0 8px; }
+  .lead { font-size: 1.05rem; border-left: 4px solid var(--accent);
+    padding: 4px 0 4px 14px; margin: 20px 0; }
+  ol.steps { list-style: none; padding: 0; margin: 0; counter-reset: s; }
+  ol.steps > li { counter-increment: s; position: relative; padding: 16px 16px 16px 60px;
+    background: var(--soft); border-radius: 14px; margin: 12px 0; }
+  ol.steps > li::before { content: counter(s); position: absolute; left: 16px; top: 16px;
+    width: 30px; height: 30px; border-radius: 50%; background: var(--accent); color: #12161f;
+    font-weight: 700; display: flex; align-items: center; justify-content: center; }
+  ol.steps strong { color: var(--head); }
+  .btn { display: inline-block; margin-top: 10px; padding: 10px 18px; border-radius: 999px;
+    background: var(--btn); color: var(--btntext); text-decoration: none; font-weight: 600; }
+  .note { color: var(--muted); font-size: .95rem; }
+  a { color: var(--accent); }
+  hr { border: 0; border-top: 1px solid var(--line); margin: 40px 0; }
+  footer { margin-top: 40px; color: var(--muted); font-size: .85rem; }
+</style>
+</head>
+<body>
+<main>
+  <div class="top">
+    <img src="data:image/png;base64,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" alt="">
+    <h1>BinderBuddy testen</h1>
+  </div>
+  <p class="lead">Danke, dass du hilfst! Google verlangt vor dem Start im Play Store einen
+  Test mit mindestens 12 Personen über 14 Tage. Du brauchst nur ein Android-Handy
+  und ein paar Minuten.</p>
+
+  <h2>So machst du mit</h2>
+  <ol class="steps">
+    <li><strong>Der Testgruppe beitreten.</strong><br>
+      Melde dich mit dem Google-Konto an, das du auch im Play Store benutzt, und tippe auf
+      „Gruppe beitreten“.<br>
+      <a class="btn" href="https://groups.google.com/g/binderbuddy-testers">Gruppe öffnen</a></li>
+    <li><strong>Tester werden.</strong><br>
+      Auf der Google-Play-Seite auf „Tester werden“ tippen.<br>
+      <a class="btn" href="https://play.google.com/apps/testing/app.binderbuddy">Tester werden</a></li>
+    <li><strong>App installieren.</strong><br>
+      Öffne den Link am Handy und installiere BinderBuddy aus dem Play Store.<br>
+      <a class="btn" href="https://play.google.com/store/apps/details?id=app.binderbuddy">Im Play Store öffnen</a></li>
+    <li><strong>14 Tage installiert lassen.</strong><br>
+      Das ist alles, was Google verlangt. Wenn du die App ausprobierst und uns sagst, was
+      dir gefällt oder fehlt, freuen wir uns sehr.</li>
+  </ol>
+
+  <p class="note">Zeigt der Play Store „App nicht verfügbar“, warte ein paar Minuten
+  nach Schritt 1 und versuche es erneut. Achte darauf, dass im Play Store dasselbe
+  Google-Konto aktiv ist. Die Vollversion kannst du im Test ausprobieren, ohne dass
+  etwas abgebucht wird – im Kauffenster steht dann „Testkarte“.</p>
+
+  <h2>Feedback</h2>
+  <p>In der App unter <strong>More → Report a problem</strong> oder per E-Mail an
+  <a href="mailto:binderbuddy@proton.me">binderbuddy@proton.me</a>.</p>
+
+  <hr>
+
+  <h2 lang="en">In English</h2>
+  <ol class="steps" lang="en">
+    <li><strong>Join the test group</strong> with the Google account you use in the Play Store.<br>
+      <a class="btn" href="https://groups.google.com/g/binderbuddy-testers">Open group</a></li>
+    <li><strong>Become a tester</strong> on the Google Play page.<br>
+      <a class="btn" href="https://play.google.com/apps/testing/app.binderbuddy">Become a tester</a></li>
+    <li><strong>Install BinderBuddy</strong> from the Play Store.<br>
+      <a class="btn" href="https://play.google.com/store/apps/details?id=app.binderbuddy">Open Play Store</a></li>
+    <li><strong>Keep it installed for 14 days.</strong> Feedback is very welcome:
+      “More → Report a problem” in the app, or <a href="mailto:binderbuddy@proton.me">binderbuddy@proton.me</a>.</li>
+  </ol>
+
+  <footer>
+    <a href="privacy.html">Privacy Policy</a> ·
+    BinderBuddy is an unofficial fan project and is not affiliated with Nintendo,
+    Creatures Inc., GAME FREAK or The Pokémon Company.
+  </footer>
+</main>
+</body>
+</html>
